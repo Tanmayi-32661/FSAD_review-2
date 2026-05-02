@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import {
-  LayoutDashboard, Briefcase, FileText, Users, Settings, LogOut,
+  LayoutDashboard, Briefcase, FileText, Users, LogOut,
   ChevronLeft, ChevronRight, GraduationCap, Building2, ClipboardList, BarChart3,
-  Shield, PlusCircle, Eye, Sparkles, Gift, FileSearch
+  PlusCircle, Eye, Sparkles, Gift, FileSearch
 } from 'lucide-react';
 
 interface SidebarItem {
@@ -33,12 +33,7 @@ const roleMenus: Record<string, SidebarItem[]> = {
     { title: 'Placement Records', icon: ClipboardList, path: '/officer/records' },
     { title: 'Student Resumes', icon: FileSearch, path: '/officer/resumes' },
     { title: 'Reports', icon: BarChart3, path: '/officer/reports' },
-  ],
-  admin: [
-    { title: 'Dashboard', icon: LayoutDashboard, path: '/admin' },
-    { title: 'User Management', icon: Users, path: '/admin/users' },
-    { title: 'Role Management', icon: Shield, path: '/admin/roles' },
-    { title: 'Settings', icon: Settings, path: '/admin/settings' },
+    { title: 'User Management', icon: Users, path: '/officer/users' },
   ],
 };
 
@@ -61,7 +56,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     student: 'Student',
     employer: 'Employer',
     officer: 'Placement Officer',
-    admin: 'Administrator',
   };
 
   return (

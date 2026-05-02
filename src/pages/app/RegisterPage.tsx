@@ -35,6 +35,20 @@ const RegisterPage = () => {
 
   useEffect(() => {
     void loadCaptcha();
+
+    const refreshVisibleCaptcha = () => {
+      if (document.visibilityState === "visible") {
+        void loadCaptcha();
+      }
+    };
+
+    window.addEventListener("pageshow", refreshVisibleCaptcha);
+    document.addEventListener("visibilitychange", refreshVisibleCaptcha);
+
+    return () => {
+      window.removeEventListener("pageshow", refreshVisibleCaptcha);
+      document.removeEventListener("visibilitychange", refreshVisibleCaptcha);
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -99,7 +113,6 @@ const RegisterPage = () => {
                   <SelectItem value="student">Student</SelectItem>
                   <SelectItem value="employer">Employer</SelectItem>
                   <SelectItem value="officer">Placement Officer</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -142,7 +155,7 @@ const RegisterPage = () => {
       <div className="gradient-hero hidden flex-1 items-center justify-center p-12 lg:flex">
         <div className="max-w-md text-center">
           <h2 className="text-4xl font-bold text-white">One platform for the full placement lifecycle.</h2>
-          <p className="mt-4 text-white/70">Students, employers, officers, and admins all work from the same secure placement flow.</p>
+          <p className="mt-4 text-white/70">Students, employers, and placement officers all work from the same secure placement flow.</p>
         </div>
       </div>
     </div>

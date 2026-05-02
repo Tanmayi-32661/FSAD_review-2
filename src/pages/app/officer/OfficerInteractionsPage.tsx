@@ -47,6 +47,16 @@ const OfficerInteractionsPage = () => {
     }
   };
 
+  const admitParticipant = async (interactionId: number, studentId: number) => {
+    try {
+      await officerService.admitMeetingParticipant(interactionId, studentId);
+      toast.success("Participant admitted");
+      await load();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to admit participant");
+    }
+  };
+
   const titleError = validateRequired("Title", title);
   const descriptionError = validateRequired("Description", description);
   const interactionDateError = validateRequired("Date", interactionDate);
@@ -91,6 +101,50 @@ const OfficerInteractionsPage = () => {
                 <h3 className="text-xl font-semibold text-slate-900">{interaction.title}</h3>
                 <p className="mt-2 text-slate-600">{interaction.description}</p>
                 <p className="mt-3 text-sm text-slate-500">{new Date(interaction.interactionDate).toLocaleString()}</p>
+                {interaction.meetingUrl && interaction.status === "SCHEDULED" ? (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <Button asChild className="rounded-2xl bg-slate-950 hover:bg-slate-800">
+                      <a href={`${interaction.meetingUrl}?host=true`} target="_blank" rel="noreferrer">
+                        Host Meeting
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" className="rounded-2xl">
+                      <a href={interaction.meetingUrl} target="_blank" rel="noreferrer">
+                        Join Meeting
+                      </a>
+                    </Button>
+                  </div>
+                ) : null}
+                {interaction.waitingParticipants?.length ? (
+                  <div className="mt-5 rounded-2xl border border-amber-100 bg-amber-50 p-4">
+                    <p className="text-sm font-semibold text-amber-800">Waiting room</p>
+                    <div className="mt-3 space-y-2">
+                      {interaction.waitingParticipants.map((participant) => (
+                        <div key={participant.id} className="flex flex-col gap-3 rounded-xl bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <p className="font-medium text-slate-900">{participant.name}</p>
+                            <p className="text-sm text-slate-500">{participant.email}</p>
+                          </div>
+                          <Button className="rounded-xl bg-slate-950 hover:bg-slate-800" onClick={() => admitParticipant(interaction.id, participant.id)}>
+                            Admit
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+                {interaction.admittedParticipants?.length ? (
+                  <div className="mt-4 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+                    <p className="text-sm font-semibold text-emerald-800">Admitted participants</p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {interaction.admittedParticipants.map((participant) => (
+                        <span key={participant.id} className="rounded-full bg-white px-3 py-1 text-sm text-emerald-700">
+                          {participant.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
               </div>
               <div className="space-y-3 text-right">
                 <AppStatusBadge status={interaction.status} />

@@ -17,9 +17,7 @@ import EmployerProfilePage from "@/pages/app/employer/EmployerProfilePage";
 import OfficerDashboardPage from "@/pages/app/officer/OfficerDashboardPage";
 import OfficerReportsPage from "@/pages/app/officer/OfficerReportsPage";
 import OfficerInteractionsPage from "@/pages/app/officer/OfficerInteractionsPage";
-import AdminDashboardPage from "@/pages/app/admin/AdminDashboardPage";
-import AdminUsersPage from "@/pages/app/admin/AdminUsersPage";
-import AdminApplicationsPage from "@/pages/app/admin/AdminApplicationsPage";
+import OfficerUsersPage from "@/pages/app/officer/OfficerUsersPage";
 import NotFound from "@/pages/NotFound";
 
 const RootRedirect = () => {
@@ -58,10 +56,7 @@ const AppRoutes = () => {
         <Route path="/officer" element={<AppProtectedRoute allowedRoles={["officer"]}><OfficerDashboardPage /></AppProtectedRoute>} />
         <Route path="/officer/reports" element={<AppProtectedRoute allowedRoles={["officer"]}><OfficerReportsPage /></AppProtectedRoute>} />
         <Route path="/officer/interactions" element={<AppProtectedRoute allowedRoles={["officer"]}><OfficerInteractionsPage /></AppProtectedRoute>} />
-
-        <Route path="/admin" element={<AppProtectedRoute allowedRoles={["admin"]}><AdminDashboardPage /></AppProtectedRoute>} />
-        <Route path="/admin/users" element={<AppProtectedRoute allowedRoles={["admin"]}><AdminUsersPage /></AppProtectedRoute>} />
-        <Route path="/admin/applications" element={<AppProtectedRoute allowedRoles={["admin"]}><AdminApplicationsPage /></AppProtectedRoute>} />
+        <Route path="/officer/users" element={<AppProtectedRoute allowedRoles={["officer"]}><OfficerUsersPage /></AppProtectedRoute>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

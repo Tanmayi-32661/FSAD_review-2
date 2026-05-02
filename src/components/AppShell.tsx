@@ -22,11 +22,7 @@ const navByRole: Record<Role, { label: string; href: string; icon: typeof Layout
     { label: "Dashboard", href: "/officer", icon: LayoutDashboard },
     { label: "Reports", href: "/officer/reports", icon: ShieldCheck },
     { label: "Interactions", href: "/officer/interactions", icon: Users },
-  ],
-  admin: [
-    { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-    { label: "Users", href: "/admin/users", icon: Users },
-    { label: "Applications", href: "/admin/applications", icon: BriefcaseBusiness },
+    { label: "Users", href: "/officer/users", icon: UserCircle2 },
   ],
 };
 

@@ -25,9 +25,9 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  // ✅ Load from localStorage
+  // Load auth per browser tab.
   const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem("pis_user");
+    const stored = sessionStorage.getItem("pis_user");
     return stored ? JSON.parse(stored) : null;
   });
 
@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         setUser(user);
 
-        localStorage.setItem("pis_user", JSON.stringify(user));
-        localStorage.setItem("pis_token", token);
+        sessionStorage.setItem("pis_user", JSON.stringify(user));
+        sessionStorage.setItem("pis_token", token);
 
         return true;
       } catch (err) {
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         });
 
         setUser(user);
-        localStorage.setItem("pis_user", JSON.stringify(user));
+        sessionStorage.setItem("pis_user", JSON.stringify(user));
 
         return true;
       } catch (err) {
@@ -85,8 +85,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // ================= LOGOUT =================
   const logout = useCallback(() => {
     setUser(null);
-    localStorage.removeItem("pis_user");
-    localStorage.removeItem("pis_token");
+    sessionStorage.removeItem("pis_user");
+    sessionStorage.removeItem("pis_token");
   }, []);
 
   // ================= UPDATE PROFILE =================
@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (!prev) return prev;
 
       const updated = { ...prev, ...updates };
-      localStorage.setItem("pis_user", JSON.stringify(updated));
+      sessionStorage.setItem("pis_user", JSON.stringify(updated));
 
       return updated;
     });

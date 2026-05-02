@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+ï»¿import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import AppShell from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
@@ -73,7 +73,7 @@ const StudentJobsPage = () => {
             </div>
 
             <div className="mt-6 rounded-[1.5rem] border border-dashed border-slate-200 p-5 text-sm text-slate-600">
-              Ask an employer or admin to create jobs whose required skills overlap with the skills above, for example
+              Ask an employer to create jobs whose required skills overlap with the skills above, for example
               `java`, `react`, `mysql`, or `python`.
             </div>
           </div>
@@ -84,7 +84,7 @@ const StudentJobsPage = () => {
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div>
                 <h3 className="text-2xl font-semibold text-slate-900">{job.title}</h3>
-                <p className="mt-1 text-slate-500">{job.employerName} • {job.location} • {job.employmentType}</p>
+                <p className="mt-1 text-slate-500">{job.employerName} â€¢ {job.location} â€¢ {job.employmentType}</p>
                 <p className="mt-4 text-slate-700">{job.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {job.skillsRequired.map((skill) => (
@@ -113,4 +113,5 @@ const StudentJobsPage = () => {
 };
 
 export default StudentJobsPage;
+
 

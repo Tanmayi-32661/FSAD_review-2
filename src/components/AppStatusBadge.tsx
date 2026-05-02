@@ -8,6 +8,9 @@ const styles: Record<string, string> = {
   SCHEDULED: "bg-sky-100 text-sky-700",
   COMPLETED: "bg-emerald-100 text-emerald-700",
   CANCELLED: "bg-slate-200 text-slate-700",
+  WAITING: "bg-amber-100 text-amber-700",
+  ADMITTED: "bg-emerald-100 text-emerald-700",
+  NOT_REQUESTED: "bg-slate-100 text-slate-700",
 };
 
 const AppStatusBadge = ({ status }: { status: string }) => {

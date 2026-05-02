@@ -7,7 +7,6 @@ export const mockUsers: User[] = [
   { id: '4', name: 'TechCorp HR', email: 'employer@test.com', role: 'employer', company: 'TechCorp Solutions', phone: '9876543220', active: true },
   { id: '5', name: 'InnoSoft HR', email: 'employer2@test.com', role: 'employer', company: 'InnoSoft Technologies', phone: '9876543221', active: true },
   { id: '6', name: 'Dr. Meena Gupta', email: 'officer@test.com', role: 'officer', department: 'Placement Cell', phone: '9876543230', active: true },
-  { id: '7', name: 'Admin User', email: 'admin@test.com', role: 'admin', phone: '9876543240', active: true },
   { id: '8', name: 'Sneha Reddy', email: 'student4@test.com', role: 'student', department: 'Information Technology', phone: '9876543213', active: false, cgpa: 8.0, skills: ['React', 'TypeScript', 'CSS', 'TensorFlow'] },
 ];
 

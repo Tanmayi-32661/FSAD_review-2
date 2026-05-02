@@ -140,7 +140,7 @@ export const API = {
     const formData = new FormData();
     formData.append("file", file);
 
-    const token = localStorage.getItem("pis_token");
+    const token = storage.getToken();
 
     const headers: any = {};
     if (token) {

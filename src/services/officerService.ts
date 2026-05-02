@@ -17,6 +17,16 @@ export const officerService = {
     return normalizeCollection(data);
   },
 
+  async getStudentMeetings(): Promise<Interaction[]> {
+    const { data } = await api.get("/students/me/meetings");
+    return normalizeCollection(data);
+  },
+
+  async requestMeetingJoin(interactionId: number): Promise<Interaction> {
+    const { data } = await api.post(`/students/me/meetings/${interactionId}/join-request`);
+    return data;
+  },
+
   async createInteraction(payload: {
     title: string;
     description: string;
@@ -33,8 +43,13 @@ export const officerService = {
     await api.delete(`/officer/interactions/${interactionId}`);
   },
 
-  async getAdminOverview(): Promise<ReportSummary> {
-    const { data } = await api.get("/admin/overview");
+  async admitMeetingParticipant(interactionId: number, studentId: number): Promise<Interaction> {
+    const { data } = await api.patch(`/officer/interactions/${interactionId}/participants/${studentId}/admit`);
+    return data;
+  },
+
+  async getOverview(): Promise<ReportSummary> {
+    const { data } = await api.get("/officer/overview");
     return data;
   },
 };

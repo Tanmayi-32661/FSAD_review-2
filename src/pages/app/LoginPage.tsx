@@ -32,6 +32,20 @@ const LoginPage = () => {
 
   useEffect(() => {
     void loadCaptcha();
+
+    const refreshVisibleCaptcha = () => {
+      if (document.visibilityState === "visible") {
+        void loadCaptcha();
+      }
+    };
+
+    window.addEventListener("pageshow", refreshVisibleCaptcha);
+    document.addEventListener("visibilitychange", refreshVisibleCaptcha);
+
+    return () => {
+      window.removeEventListener("pageshow", refreshVisibleCaptcha);
+      document.removeEventListener("visibilitychange", refreshVisibleCaptcha);
+    };
   }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {

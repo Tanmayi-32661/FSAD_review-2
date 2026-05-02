@@ -25,8 +25,8 @@ const HomePage = () => {
               Full-stack placement tracking with strict resume-first student access.
             </h2>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              Students upload resumes before anything else, employers manage jobs and applicants, officers monitor placements,
-              and admins keep the whole system aligned.
+              Students upload resumes before anything else, employers manage jobs and applicants, and placement officers
+              monitor placements, meetings, reports, and user access.
             </p>
             <div className="mt-8 flex gap-4">
               <Button asChild className="rounded-full bg-white text-slate-950 hover:bg-slate-200">

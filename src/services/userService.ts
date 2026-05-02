@@ -13,18 +13,18 @@ export const userService = {
   },
 
   async getAllUsers(): Promise<User[]> {
-    const { data } = await api.get("/admin/users");
+    const { data } = await api.get("/officer/users");
     return normalizeCollection(data.map(normalizeSingleUser));
   },
 
   async updateUserRole(userId: number, role: Role): Promise<User> {
-    const { data } = await api.patch(`/admin/users/${userId}/role`, {
+    const { data } = await api.patch(`/officer/users/${userId}/role`, {
       role: role.toUpperCase(),
     });
     return normalizeSingleUser(data);
   },
 
   async deleteUser(userId: number): Promise<void> {
-    await api.delete(`/admin/users/${userId}`);
+    await api.delete(`/officer/users/${userId}`);
   },
 };

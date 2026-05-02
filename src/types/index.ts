@@ -1,4 +1,4 @@
-export type Role = "student" | "employer" | "officer" | "admin";
+export type Role = "student" | "employer" | "officer";
 
 export interface User {
   id: number | string;
@@ -88,6 +88,16 @@ export interface Interaction {
   studentName?: string | null;
   employerId?: number | null;
   employerName?: string | null;
+  meetingUrl?: string;
+  waitingParticipants?: MeetingParticipant[];
+  admittedParticipants?: MeetingParticipant[];
+  joinStatus?: "NOT_REQUESTED" | "WAITING" | "ADMITTED";
+}
+
+export interface MeetingParticipant {
+  id: number;
+  name: string;
+  email: string;
 }
 
 export interface ReportSummary {
